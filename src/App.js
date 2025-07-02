@@ -4,7 +4,7 @@ import CountryComponent from "./components/CountryComponent";
 
 const fetchCountries = async () => {
   const response = await fetch(
-    "https://xcountries-backend.azurewebsites.net/all"
+    "https://xcountries-backend.azurewebsites.net/alll"
   );
   const data = await response.json();
 
@@ -18,10 +18,10 @@ function App() {
   useEffect(() => {
     fetchCountries()
       .then((data) => {
-        setLoad(false);
         setCountries(data);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(`Error fetching data:${error.message}`))
+      .finally(() => setLoad(false));
   }, []);
 
   return (
