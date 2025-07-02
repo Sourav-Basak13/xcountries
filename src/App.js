@@ -13,31 +13,33 @@ const fetchCountries = async () => {
 
 function App() {
   const [countries, setCountries] = useState([]);
+  const [load, setLoad] = useState(true);
 
   useEffect(() => {
     fetchCountries()
       .then((data) => {
+        setLoad(false);
         setCountries(data);
       })
       .catch((error) => console.error(error));
   }, []);
-
-  console.log(countries, "countries");
 
   return (
     <div
       style={{
         display: "flex",
         flexWrap: "wrap",
+        justifyContent: "center",
+        alignItems: "center",
         gap: "10px",
-        width: "80%",
-        margin: "20px auto",
-        padding: "20px",
+        margin: "20px",
       }}
     >
-      {countries.map((country) => (
-        <CountryComponent key={country?.abbr} {...country} />
-      ))}
+      {load && <p>Loading........</p>}
+      {!load &&
+        countries.map((country) => (
+          <CountryComponent key={country?.abbr} {...country} />
+        ))}
     </div>
   );
 }
