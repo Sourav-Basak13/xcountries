@@ -4,7 +4,7 @@ import CountryComponent from "./components/CountryComponent";
 
 const fetchCountries = async () => {
   const response = await fetch(
-    "https://xcountries-backend.azurewebsites.net/alll"
+    "https://xcountries-backend.azurewebsites.net/all"
   );
   const data = await response.json();
 
